@@ -407,5 +407,6 @@ package-lock.json
 .serverless/**/*.zip
 
 # production
+dist/
 
 
