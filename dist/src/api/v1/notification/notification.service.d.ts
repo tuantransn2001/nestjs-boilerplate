@@ -33,8 +33,8 @@ export declare class NotificationService {
             id?: string;
             type?: import("../user/enum").UserType;
         };
-        title?: string;
         description?: string;
+        title?: string;
         icon?: string;
         read?: boolean;
         id?: string;
@@ -46,8 +46,8 @@ export declare class NotificationService {
             id?: string;
             type?: import("../user/enum").UserType;
         };
-        title?: string;
         description?: string;
+        title?: string;
         icon?: string;
         read?: boolean;
         id?: string;

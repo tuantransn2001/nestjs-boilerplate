@@ -17,9 +17,7 @@ const auth_module_1 = require("./auth/auth.module");
 const nestjs_knex_1 = require("nestjs-knex");
 const seed_module_1 = require("./seed/seed.module");
 const user_module_1 = require("./user/user.module");
-const post_module_1 = require("./post/post.module");
-const comment_module_1 = require("./comment/comment.module");
-const search_module_1 = require("./search/search.module");
+const local_file_module_1 = require("./local-file/local-file.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -30,7 +28,7 @@ AppModule = __decorate([
                     return {
                         config: {
                             client: 'pg',
-                            connection: 'postgresql://postgres:tuantransn2001@localhost:5432/messenger',
+                            connection: process.env.POSTGRESQL_DB_CONNECT_LINK,
                             migrations: {
                                 directory: './src/api/v1/database/knex/migrations',
                                 extension: 'ts',
@@ -61,9 +59,7 @@ AppModule = __decorate([
             user_module_1.UserModule,
             chat_module_1.ChatModule,
             healthCheck_module_1.HealthCheckModule,
-            post_module_1.PostModule,
-            comment_module_1.CommentModule,
-            search_module_1.SearchModule,
+            local_file_module_1.LocalFileModule,
         ],
     })
 ], AppModule);

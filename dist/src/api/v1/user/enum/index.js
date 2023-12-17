@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserFriendStatus = exports.UserFriendType = exports.UserStatus = exports.UserType = exports.DeviceType = void 0;
+exports.UserStatus = exports.UserType = exports.DeviceType = void 0;
 var DeviceType;
 (function (DeviceType) {
     DeviceType["APPLE"] = "1";
@@ -18,14 +18,4 @@ var UserStatus;
     UserStatus["OFFLINE"] = "offline";
     UserStatus["BUSY"] = "busy";
 })(UserStatus = exports.UserStatus || (exports.UserStatus = {}));
-var UserFriendType;
-(function (UserFriendType) {
-    UserFriendType["DEFAULT"] = "default";
-})(UserFriendType = exports.UserFriendType || (exports.UserFriendType = {}));
-var UserFriendStatus;
-(function (UserFriendStatus) {
-    UserFriendStatus["NEW"] = "new";
-    UserFriendStatus["REJECTED"] = "reject";
-    UserFriendStatus["ACCEPTED"] = "accept";
-})(UserFriendStatus = exports.UserFriendStatus || (exports.UserFriendStatus = {}));
 //# sourceMappingURL=index.js.map

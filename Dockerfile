@@ -1,22 +1,40 @@
-# Base image
-FROM node:18
+# Install dependencies:
+FROM node:18-alpine AS install-dependencies
 
-# Create app directory
-WORKDIR /usr/src/app
+WORKDIR /user/src/app
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
+RUN npm install -g npm@10.2.5
 
-# Install app dependencies
-RUN npm install
+COPY package.json package-lock.json ./
 
-# Bundle app source
+RUN npm ci
+
 COPY . .
 
-# Creates a "dist" folder with the production build
+# Creating a build:
+FROM node:18-alpine AS create-build
+
+WORKDIR /user/src/app
+
+RUN npm install -g npm@10.2.5
+
+COPY --from=install-dependencies /user/src/app ./
+
 RUN npm run build
 
-EXPOSE 4000
+USER node
 
-# Start the server using the production build
-CMD [ "npm" , "run" , "start:prod" ]
+# Run application in production:
+FROM node:18-alpine AS run
+
+WORKDIR /user/src/app
+
+RUN npm install -g npm@10.2.5
+
+COPY --from=install-dependencies /user/src/app/node_modules ./node_modules
+COPY --from=create-build /user/src/app/dist ./dist
+COPY package.json ./
+
+RUN npm prune --production
+
+CMD ["npm", "run", "start:prod"]

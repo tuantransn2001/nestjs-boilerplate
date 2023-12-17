@@ -12,11 +12,3 @@ export declare enum UserStatus {
     OFFLINE = "offline",
     BUSY = "busy"
 }
-export declare enum UserFriendType {
-    DEFAULT = "default"
-}
-export declare enum UserFriendStatus {
-    NEW = "new",
-    REJECTED = "reject",
-    ACCEPTED = "accept"
-}

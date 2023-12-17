@@ -4,17 +4,19 @@ import { INestApplication } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { modelDefineProvider } from '../common/provider';
 import { Conversation } from './entities/conversation.entity';
-import { UnibertyService } from '../uniberty/uniberty.service';
 import { DatabaseModule } from '../database/database.module';
-import { MODEL_NAME } from '../common/enums/common';
+import { ModelName } from '../common/enums/common';
+import { UserService } from '../user/user.service';
+import { MessageService } from './message.service';
 async function createNestApp(): Promise<INestApplication> {
   const testingModule = await Test.createTestingModule({
     imports: [DatabaseModule],
     providers: [
-      ...modelDefineProvider(MODEL_NAME.CONVERSATION, Conversation),
+      ...modelDefineProvider(ModelName.CONVERSATION, Conversation),
       ChatGateway,
       ChatService,
-      UnibertyService,
+      UserService,
+      MessageService,
     ],
   }).compile();
   return testingModule.createNestApplication();
@@ -24,9 +26,8 @@ describe('ChatGateway', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
-    // Instantiate the app
     app = await createNestApp();
-    // Get the gateway instance from the app instance
+
     gateway = app.get<ChatGateway>(ChatGateway);
 
     app.listen(3000);

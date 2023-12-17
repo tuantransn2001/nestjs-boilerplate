@@ -8,12 +8,6 @@ const device_model_1 = require("./device.model");
 const userVerification_model_1 = require("./userVerification.model");
 const enum_1 = require("../../../user/enum");
 const common_2 = require("../../../common");
-const userFriend_model_1 = require("./userFriend.model");
-const userPost_1 = require("./userPost");
-const postComment_1 = require("./postComment");
-const postLike_model_1 = require("./postLike.model");
-const commentLike_model_1 = require("./commentLike.model");
-const userSearchHistory_model_1 = require("./userSearchHistory.model");
 class User extends base_model_1.default {
     static get tableName() {
         return common_1.ModelName.USER;
@@ -57,72 +51,12 @@ class User extends base_model_1.default {
                     to: `${common_1.ModelName.DEVICE}.user_id`,
                 },
             },
-            searchHistories: {
-                relation: objection_1.Model.HasManyRelation,
-                modelClass: userSearchHistory_model_1.UserSearchHistory,
-                join: {
-                    from: `${common_1.ModelName.USER}.id`,
-                    to: `${common_1.ModelName.USER_SEARCH_HISTORY}.sourceId`,
-                },
-            },
-            userTargetSearch: {
-                relation: objection_1.Model.BelongsToOneRelation,
-                modelClass: userSearchHistory_model_1.UserSearchHistory,
-                join: {
-                    from: `${common_1.ModelName.USER}.id`,
-                    to: `${common_1.ModelName.USER_SEARCH_HISTORY}.targetId`,
-                },
-            },
-            posts: {
-                relation: objection_1.Model.HasManyRelation,
-                modelClass: userPost_1.UserPost,
-                join: {
-                    from: `${common_1.ModelName.USER}.id`,
-                    to: `${common_1.ModelName.USER_POST}.authorId`,
-                },
-            },
-            postComments: {
-                relation: objection_1.Model.HasManyRelation,
-                modelClass: postComment_1.PostComment,
-                join: {
-                    from: `${common_1.ModelName.USER}.id`,
-                    to: `${common_1.ModelName.POST_COMMENT}.authorId`,
-                },
-            },
-            postLikes: {
-                relation: objection_1.Model.HasManyRelation,
-                modelClass: postLike_model_1.PostLike,
-                join: {
-                    from: `${common_1.ModelName.USER}.id`,
-                    to: `${common_1.ModelName.POST_LIKE}.authorId`,
-                },
-            },
-            commentLikes: {
-                relation: objection_1.Model.HasManyRelation,
-                modelClass: commentLike_model_1.CommentLike,
-                join: {
-                    from: `${common_1.ModelName.USER}.id`,
-                    to: `${common_1.ModelName.COMMENT_LIKE}.authorId`,
-                },
-            },
             userVerifications: {
                 relation: objection_1.Model.HasManyRelation,
                 modelClass: userVerification_model_1.UserVerification,
                 join: {
                     from: `${common_1.ModelName.USER}.id`,
                     to: `${common_1.ModelName.USER_VERIFICATION}.user_id`,
-                },
-            },
-            userFriends: {
-                relation: objection_1.Model.ManyToManyRelation,
-                modelClass: userFriend_model_1.UserFriend,
-                join: {
-                    from: `${common_1.ModelName.USER}.id`,
-                    through: {
-                        from: `${common_1.ModelName.USER_FIEND}.source_id`,
-                        to: `${common_1.ModelName.USER_FIEND}.target_id`,
-                    },
-                    to: `${common_1.ModelName.USER_FIEND}.id`,
                 },
             },
         };
