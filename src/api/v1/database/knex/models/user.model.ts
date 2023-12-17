@@ -3,8 +3,8 @@ import { ModelName } from '../../../common/enums/common';
 import BaseModel from '../../../common/models/base.model';
 import { Device } from './device.model';
 import { UserVerification } from './userVerification.model';
-import { UserType, UserStatus } from 'src/api/v1/user/enum';
-import { getCurrentTime } from 'src/api/v1/common';
+import { UserType, UserStatus } from '../../../user/enum';
+import { getCurrentTime } from '../../../common';
 export class User extends BaseModel {
   static get tableName() {
     return ModelName.USER;

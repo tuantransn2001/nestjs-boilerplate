@@ -21,8 +21,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
             GUEST?: unknown;
         };
     };
-    title?: string;
     description?: string;
+    title?: string;
     icon?: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
@@ -41,8 +41,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
             GUEST?: unknown;
         };
     };
-    title?: string;
     description?: string;
+    title?: string;
     icon?: string;
 }>> & mongoose.FlatRecord<{
     createdAt: NativeDate;
@@ -61,8 +61,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
             GUEST?: unknown;
         };
     };
-    title?: string;
     description?: string;
+    title?: string;
     icon?: string;
 }> & {
     _id: mongoose.Types.ObjectId;

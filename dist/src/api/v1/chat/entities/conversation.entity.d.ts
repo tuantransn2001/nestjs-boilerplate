@@ -19,10 +19,10 @@ export declare const Conversation: mongoose.Schema<any, mongoose.Model<any, any,
         createdAt: Date;
         isDelete: boolean;
         updatedAt?: Date;
-        content?: string;
         sender?: {
             type?: string;
         };
+        content?: string;
     }[];
     createdAt?: Date;
     updatedAt?: Date;
@@ -42,10 +42,10 @@ export declare const Conversation: mongoose.Schema<any, mongoose.Model<any, any,
         createdAt: Date;
         isDelete: boolean;
         updatedAt?: Date;
-        content?: string;
         sender?: {
             type?: string;
         };
+        content?: string;
     }[];
     createdAt?: Date;
     updatedAt?: Date;
@@ -65,10 +65,10 @@ export declare const Conversation: mongoose.Schema<any, mongoose.Model<any, any,
         createdAt: Date;
         isDelete: boolean;
         updatedAt?: Date;
-        content?: string;
         sender?: {
             type?: string;
         };
+        content?: string;
     }[];
     createdAt?: Date;
     updatedAt?: Date;

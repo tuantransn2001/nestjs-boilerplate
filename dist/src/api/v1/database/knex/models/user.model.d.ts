@@ -3,12 +3,6 @@ import BaseModel from '../../../common/models/base.model';
 import { Device } from './device.model';
 import { UserVerification } from './userVerification.model';
 import { UserType, UserStatus } from 'src/api/v1/user/enum';
-import { UserFriend } from './userFriend.model';
-import { UserPost } from './userPost';
-import { PostComment } from './postComment';
-import { PostLike } from './postLike.model';
-import { CommentLike } from './commentLike.model';
-import { UserSearchHistory } from './userSearchHistory.model';
 export declare class User extends BaseModel {
     static get tableName(): ModelName;
     email: string;
@@ -80,71 +74,11 @@ export declare class User extends BaseModel {
                 to: string;
             };
         };
-        searchHistories: {
-            relation: import("objection").RelationType;
-            modelClass: typeof UserSearchHistory;
-            join: {
-                from: string;
-                to: string;
-            };
-        };
-        userTargetSearch: {
-            relation: import("objection").RelationType;
-            modelClass: typeof UserSearchHistory;
-            join: {
-                from: string;
-                to: string;
-            };
-        };
-        posts: {
-            relation: import("objection").RelationType;
-            modelClass: typeof UserPost;
-            join: {
-                from: string;
-                to: string;
-            };
-        };
-        postComments: {
-            relation: import("objection").RelationType;
-            modelClass: typeof PostComment;
-            join: {
-                from: string;
-                to: string;
-            };
-        };
-        postLikes: {
-            relation: import("objection").RelationType;
-            modelClass: typeof PostLike;
-            join: {
-                from: string;
-                to: string;
-            };
-        };
-        commentLikes: {
-            relation: import("objection").RelationType;
-            modelClass: typeof CommentLike;
-            join: {
-                from: string;
-                to: string;
-            };
-        };
         userVerifications: {
             relation: import("objection").RelationType;
             modelClass: typeof UserVerification;
             join: {
                 from: string;
-                to: string;
-            };
-        };
-        userFriends: {
-            relation: import("objection").RelationType;
-            modelClass: typeof UserFriend;
-            join: {
-                from: string;
-                through: {
-                    from: string;
-                    to: string;
-                };
                 to: string;
             };
         };

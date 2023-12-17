@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { KnexModule } from 'nestjs-knex';
 import { SeedModule } from './seed/seed.module';
 import { UserModule } from './user/user.module';
+import { LocalFileModule } from './local-file/local-file.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { UserModule } from './user/user.module';
     UserModule,
     ChatModule,
     HealthCheckModule,
+    LocalFileModule,
   ],
 })
 export class AppModule {}

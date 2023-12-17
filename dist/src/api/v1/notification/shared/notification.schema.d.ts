@@ -13,8 +13,8 @@ export declare const NotificationType: z.ZodObject<{
         id?: string;
         type?: UserType;
     }>;
-    title: z.ZodString;
     description: z.ZodString;
+    title: z.ZodString;
     icon: z.ZodString;
     read: z.ZodBoolean;
     id: z.ZodString;
@@ -26,8 +26,8 @@ export declare const NotificationType: z.ZodObject<{
         id?: string;
         type?: UserType;
     };
-    title?: string;
     description?: string;
+    title?: string;
     icon?: string;
     read?: boolean;
     id?: string;
@@ -39,8 +39,8 @@ export declare const NotificationType: z.ZodObject<{
         id?: string;
         type?: UserType;
     };
-    title?: string;
     description?: string;
+    title?: string;
     icon?: string;
     read?: boolean;
     id?: string;

@@ -1,22 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
+import { LocalFileService } from './local-file.service';
 import { DatabaseModule } from '../database/database.module';
-import { getModelToken } from '@nestjs/mongoose';
+import { modelDefineProvider } from '../common/provider';
 import { ModelName } from '../common/enums/common';
-
-describe('UserService', () => {
-  let service: UserService;
+import { LocalFile } from './entities/localFile.entity';
+describe('LocalFileService', () => {
+  let service: LocalFileService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [DatabaseModule],
       providers: [
-        UserService,
-        { provide: getModelToken(ModelName.USER), useValue: jest.fn() },
+        ...modelDefineProvider(ModelName.LOCAL_FILE, LocalFile),
+        LocalFileService,
       ],
     }).compile();
 
-    service = module.get<UserService>(UserService);
+    service = module.get<LocalFileService>(LocalFileService);
   });
 
   it('should be defined', () => {
