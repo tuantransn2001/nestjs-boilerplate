@@ -10,19 +10,19 @@ export declare class HealthCheckService {
     constructor(healthCheckModel: Model<IHealthCheck>, health: NestHealthCheckService, knexDB: DatabaseHealthIndicator);
     checkServerScreen(): {
         statusCode: number;
-        message: string;
-        data: any;
+        error: HttpException;
     } | {
         statusCode: number;
-        error: HttpException;
+        message: string;
+        data: any;
     };
     checkMongooseConnection(): Promise<{
         statusCode: number;
-        message: string;
-        data: any;
+        error: HttpException;
     } | {
         statusCode: number;
-        error: HttpException;
+        message: string;
+        data: any;
     }>;
     checkKnexConnection(): Promise<{
         statusCode: number;

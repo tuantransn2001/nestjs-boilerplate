@@ -62,7 +62,7 @@ export class AuthService {
       } as HttpException);
 
     const loginResponse = RestFullAPI.onSuccess(
-      STATUS_CODE.CREATED,
+      STATUS_CODE.OK,
       'Successfully logged in',
       await this.issueToken(foundUser, response),
     );

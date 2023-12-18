@@ -1,6 +1,5 @@
 import { IConversation, MemberType } from './shared/chat.interface';
 import { Model } from 'mongoose';
-import { HttpException } from '../utils';
 import { UserService } from '../user/user.service';
 export declare class MessageService {
     private readonly userService;
@@ -11,19 +10,19 @@ export declare class MessageService {
         type?: string;
     }[]) => Promise<{
         statusCode: number;
-        message: string;
-        data: any;
+        error: import("../utils").HttpException;
     } | {
         statusCode: number;
-        error: HttpException;
+        message: string;
+        data: any;
     }>;
     handleGetAllMessageByConversationID: (ConversationModel: Model<IConversation>, id: string) => Promise<{
         statusCode: number;
-        message: string;
-        data: any;
+        error: import("../utils").HttpException;
     } | {
         statusCode: number;
-        error: HttpException;
+        message: string;
+        data: any;
     }>;
     handleGetFullUserDetailByIDList: (members: {
         id?: string;

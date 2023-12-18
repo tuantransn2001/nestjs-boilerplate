@@ -1,5 +1,5 @@
 {
-  "name": "messenger",
+  "name": "nestjs-api",
   "private": true,
   "version": "1.0.0",
   "description": "NestJs Websocket",
@@ -9,7 +9,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "cross-env NODE_ENV=dev nest start --watch",
-    "docker:start:dev": "docker run -p 4000:4000 messenger-api",
+    "docker:start:dev": "docker run -p 4000:4000 nestjs-api",
     "docker:test:build:dev": "docker build -t nestjs-api:test --target=create-build .",
     "docker:test:start:dev": "docker run nestjs-api:test sh -c 'npm run test'",
     "start:prod": "cross-env NODE_ENV=prod node dist/src/api/v1/main.js",
@@ -72,6 +72,7 @@
     "nestjs-pino": "^3.3.0",
     "nestjs-zod": "^3.0.0",
     "node_extra_ca_certs_mozilla_bundle": "^1.0.5",
+    "nodemailer": "^6.9.7",
     "objection": "^3.1.2",
     "pg": "^8.11.3",
     "pino": "^8.14.1",

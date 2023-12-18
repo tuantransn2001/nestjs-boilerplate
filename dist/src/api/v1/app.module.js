@@ -14,7 +14,6 @@ const nestjs_pino_1 = require("nestjs-pino");
 const config_1 = require("@nestjs/config");
 const database_module_1 = require("./database/database.module");
 const auth_module_1 = require("./auth/auth.module");
-const nestjs_knex_1 = require("nestjs-knex");
 const seed_module_1 = require("./seed/seed.module");
 const user_module_1 = require("./user/user.module");
 const local_file_module_1 = require("./local-file/local-file.module");
@@ -23,23 +22,6 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            nestjs_knex_1.KnexModule.forRootAsync({
-                useFactory: () => {
-                    return {
-                        config: {
-                            client: 'pg',
-                            connection: process.env.POSTGRESQL_DB_CONNECT_LINK,
-                            migrations: {
-                                directory: './src/api/v1/database/knex/migrations',
-                                extension: 'ts',
-                                loadExtensions: ['.ts'],
-                            },
-                            seeds: {},
-                            debug: true,
-                        },
-                    };
-                },
-            }),
             nestjs_pino_1.LoggerModule.forRoot({
                 pinoHttp: {
                     transport: {

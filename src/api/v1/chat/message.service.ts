@@ -10,14 +10,8 @@ import {
 } from './shared/chat.interface';
 import { isEmpty } from '../common';
 import { Model } from 'mongoose';
-import {
-  HttpException,
-  RestFullAPI,
-  errorHandler,
-  handleErrorNotFound,
-} from '../utils';
+import { RestFullAPI, errorHandler, handleErrorNotFound } from '../utils';
 import { STATUS_CODE, STATUS_MESSAGE } from '../common/enums/api_enums';
-
 import { ObjectType } from '../common/types/common';
 import { UserService } from '../user/user.service';
 import { isSingleChat } from './helper';
@@ -54,7 +48,6 @@ export class MessageService {
 
     return existMessages;
   }
-
   public handleGetAllConversationByMembers = async (
     conversationModel: Model<IConversation>,
     members: MemberTypeArray,

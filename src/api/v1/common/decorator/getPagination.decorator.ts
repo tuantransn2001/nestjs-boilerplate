@@ -2,7 +2,7 @@ import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { PaginationDtoOutput } from '../dto/output/paginationDto';
 import { URLSearchParam } from '../../utils';
 export const GetPagination = createParamDecorator(
-  (data, ctx: ExecutionContext): PaginationDtoOutput => {
+  (_, ctx: ExecutionContext): PaginationDtoOutput => {
     const args = ctx.switchToHttp().getRequest();
 
     const paginationParams: PaginationDtoOutput = {
