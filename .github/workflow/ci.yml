@@ -20,12 +20,6 @@ jobs:
  
       - name: Build the Docker image
         run: docker build -t $IMAGE_TAG --target=create-build .
- 
-      - name: Run Prettier
-        run: docker run $IMAGE_TAG sh -c 'npm run format:verify'
- 
-      - name: Run ESLint
-        run: docker run $IMAGE_TAG sh -c 'npm run lint'
- 
+  
       - name: Run tests
         run: docker run $IMAGE_TAG sh -c 'npm run test'

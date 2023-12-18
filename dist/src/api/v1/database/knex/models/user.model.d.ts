@@ -2,7 +2,7 @@ import { ModelName } from '../../../common/enums/common';
 import BaseModel from '../../../common/models/base.model';
 import { Device } from './device.model';
 import { UserVerification } from './userVerification.model';
-import { UserType, UserStatus } from 'src/api/v1/user/enum';
+import { UserType, UserStatus } from '../../../user/enum';
 export declare class User extends BaseModel {
     static get tableName(): ModelName;
     email: string;

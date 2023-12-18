@@ -8,7 +8,7 @@ import { UserAccess } from './knex/models/userAccess.model';
 import { UserVerification } from './knex/models/userVerification.model';
 import { DatabaseHealthIndicator } from './database.health';
 import { KnexModule } from 'nestjs-knex';
-import { knexOptions } from '../../configuration/database.config';
+import { knexOptions } from '../configuration/database.config';
 
 const models = [User, BlockList, Device, UserAccess, UserVerification];
 

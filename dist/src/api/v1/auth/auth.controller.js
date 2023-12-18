@@ -18,6 +18,7 @@ const auth_service_1 = require("./auth.service");
 const swagger_1 = require("@nestjs/swagger");
 const loginDto_1 = require("./dto/input/loginDto");
 const registerDto_1 = require("./dto/input/registerDto");
+const enum_1 = require("../user/enum");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -37,6 +38,18 @@ let AuthController = class AuthController {
 };
 __decorate([
     (0, common_1.Post)('/login'),
+    (0, swagger_1.ApiOperation)({ summary: 'Login', description: 'User login' }),
+    (0, swagger_1.ApiBody)({
+        type: loginDto_1.LoginDto,
+        examples: {
+            login: {
+                value: {
+                    phone: '0123456789',
+                    password: 'password',
+                },
+            },
+        },
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)({ passthrough: true })),
     __metadata("design:type", Function),
@@ -45,6 +58,24 @@ __decorate([
 ], AuthController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)('/register'),
+    (0, swagger_1.ApiOperation)({ summary: 'Register', description: 'User register' }),
+    (0, swagger_1.ApiBody)({
+        type: registerDto_1.RegisterDto,
+        examples: {
+            register: {
+                value: {
+                    email: 'admin@gmail.com',
+                    phone: '0984250491',
+                    password: 'password',
+                    first_name: 'admin',
+                    middle_name: 'admin',
+                    last_name: 'admin',
+                    type: enum_1.UserType.ADMIN,
+                    status: enum_1.UserStatus.ONLINE,
+                },
+            },
+        },
+    }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)({ passthrough: true })),
     __metadata("design:type", Function),
@@ -67,7 +98,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "getMe", null);
 AuthController = __decorate([
-    (0, swagger_1.ApiTags)('Auth'),
+    (0, swagger_1.ApiTags)('Authenticate'),
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);

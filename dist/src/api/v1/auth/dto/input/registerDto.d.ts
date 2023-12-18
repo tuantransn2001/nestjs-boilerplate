@@ -1,4 +1,4 @@
-import { UserStatus, UserType } from 'src/api/v1/user/enum';
+import { UserStatus, UserType } from '../../../user/enum';
 export declare class RegisterDto {
     email?: string;
     phone: string;

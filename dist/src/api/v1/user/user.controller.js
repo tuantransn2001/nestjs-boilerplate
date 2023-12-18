@@ -33,6 +33,42 @@ let UserController = class UserController {
 };
 __decorate([
     (0, common_1.Post)('/search'),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Search user by name',
+        description: 'Search user by name',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'page_number',
+        type: Number,
+        examples: {
+            '0': {
+                value: 0,
+                description: 'Start from 0',
+            },
+            '10': {
+                value: 10,
+                description: `Skip 10 collection`,
+            },
+        },
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'page_size',
+        type: Number,
+        examples: {
+            '10': {
+                value: 10,
+                description: `Get 10 collection`,
+            },
+            '50': {
+                value: 50,
+                description: `Get 50 collection`,
+            },
+        },
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'name',
+        type: String,
+    }),
     __param(0, (0, common_1.Query)()),
     __param(1, (0, getPagination_decorator_1.GetPagination)()),
     __metadata("design:type", Function),

@@ -15,5 +15,5 @@ class Axios {
     }
 }
 exports.Axios = Axios;
-Axios.URL = process.env.UNIBERTY_BASE_URL;
+Axios.URL = '';
 //# sourceMappingURL=apiRequest.js.map

@@ -1,2 +1,3 @@
 import { Knex } from 'knex';
-export declare const knexConfig: Knex.Config;
+import { KnexModuleOptions } from 'nestjs-knex';
+export declare const knexConfig: Knex.Config | KnexModuleOptions;

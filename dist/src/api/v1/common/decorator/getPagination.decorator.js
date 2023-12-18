@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetPagination = void 0;
 const common_1 = require("@nestjs/common");
 const utils_1 = require("../../utils");
-exports.GetPagination = (0, common_1.createParamDecorator)((data, ctx) => {
+exports.GetPagination = (0, common_1.createParamDecorator)((_, ctx) => {
     var _a;
     const args = ctx.switchToHttp().getRequest();
     const paginationParams = {

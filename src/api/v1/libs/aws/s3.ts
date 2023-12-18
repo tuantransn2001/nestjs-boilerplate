@@ -68,7 +68,7 @@ class AWSS3 {
           Key: name,
         };
 
-        this.s3.putObject(params, (e, d) => {
+        this.s3.putObject(params, (e: any, d: { name: string }) => {
           if (e) {
             reject(e);
           }
@@ -87,12 +87,12 @@ class AWSS3 {
             sharp(filepath)
               .resize(width, height)
               .toBuffer()
-              .then((buffer) => {
+              .then((buffer: any) => {
                 params.Body = buffer;
 
                 params.Key = width + '-' + height + '-' + params.Key;
 
-                this.s3.putObject(params, (e, d) => {
+                this.s3.putObject(params, (e: any, d: { name: any }) => {
                   if (e) {
                     reject(e);
                   }
@@ -103,7 +103,7 @@ class AWSS3 {
                   resolve(res);
                 });
               })
-              .catch((e) => reject(e));
+              .catch((e: any) => reject(e));
           } else {
             resolve(res);
           }

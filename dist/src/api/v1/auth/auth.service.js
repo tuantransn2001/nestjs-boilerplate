@@ -48,7 +48,7 @@ let AuthService = class AuthService {
             return utils_1.RestFullAPI.onFail(api_enums_1.STATUS_CODE.UNAUTHORIZED, {
                 message: 'Password in-correct',
             });
-        const loginResponse = utils_1.RestFullAPI.onSuccess(api_enums_1.STATUS_CODE.CREATED, 'Successfully logged in', await this.issueToken(foundUser, response));
+        const loginResponse = utils_1.RestFullAPI.onSuccess(api_enums_1.STATUS_CODE.OK, 'Successfully logged in', await this.issueToken(foundUser, response));
         return loginResponse;
     }
     async register(registerDTO, response) {

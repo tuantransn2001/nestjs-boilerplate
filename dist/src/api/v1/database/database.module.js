@@ -16,6 +16,8 @@ const device_model_1 = require("./knex/models/device.model");
 const userAccess_model_1 = require("./knex/models/userAccess.model");
 const userVerification_model_1 = require("./knex/models/userVerification.model");
 const database_health_1 = require("./database.health");
+const nestjs_knex_1 = require("nestjs-knex");
+const database_config_1 = require("../configuration/database.config");
 const models = [user_model_1.User, blockList_model_1.BlockList, device_model_1.Device, userAccess_model_1.UserAccess, userVerification_model_1.UserVerification];
 const modelProviders = models.map((model) => ({
     provide: model.name,
@@ -25,6 +27,11 @@ let DatabaseModule = class DatabaseModule {
 };
 DatabaseModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            nestjs_knex_1.KnexModule.forRootAsync({
+                useFactory: () => database_config_1.knexOptions,
+            }),
+        ],
         providers: [
             ...modelProviders,
             ...mongoose_connection_provider_1.databaseProviders,

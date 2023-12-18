@@ -13,19 +13,19 @@ export declare class AuthService {
     }>;
     login(loginDto: LoginDto, response: Response): Promise<{
         statusCode: number;
-        message: string;
-        data: any;
+        error: HttpException;
     } | {
         statusCode: number;
-        error: HttpException;
+        message: string;
+        data: any;
     }>;
     register(registerDTO: RegisterDto, response: Response): Promise<{
         statusCode: number;
-        message: string;
-        data: any;
+        error: HttpException;
     } | {
         statusCode: number;
-        error: HttpException;
+        message: string;
+        data: any;
     }>;
     logout(response: Response): Promise<{
         statusCode: number;
