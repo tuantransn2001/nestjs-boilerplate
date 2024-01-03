@@ -10,15 +10,27 @@ exports.DatabaseModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_connection_provider_1 = require("./provider/mongoose-connection.provider");
 const knex_connection_provider_1 = require("./provider/knex-connection.provider");
-const user_model_1 = require("./knex/models/user.model");
-const blockList_model_1 = require("./knex/models/blockList.model");
-const device_model_1 = require("./knex/models/device.model");
-const userAccess_model_1 = require("./knex/models/userAccess.model");
-const userVerification_model_1 = require("./knex/models/userVerification.model");
 const database_health_1 = require("./database.health");
 const nestjs_knex_1 = require("nestjs-knex");
 const database_config_1 = require("../configuration/database.config");
-const models = [user_model_1.User, blockList_model_1.BlockList, device_model_1.Device, userAccess_model_1.UserAccess, userVerification_model_1.UserVerification];
+const user_model_1 = require("./knex/models/user.model");
+const access_token_model_1 = require("./knex/models/access_token.model");
+const refresh_token_model_1 = require("./knex/models/refresh_token.model");
+const general_setting_model_1 = require("./knex/models/general_setting.model");
+const role_permissions_model_1 = require("./knex/models/role_permissions.model");
+const role_permisstion_model_1 = require("./knex/models/role_permisstion.model");
+const role_model_1 = require("./knex/models/role.model");
+const user_role_model_1 = require("./knex/models/user_role.model");
+const models = [
+    user_model_1.UserModel,
+    access_token_model_1.AccessTokenModel,
+    refresh_token_model_1.RefreshTokenModel,
+    general_setting_model_1.GenerateSettingModel,
+    role_permissions_model_1.RolePermissionsModel,
+    role_permisstion_model_1.RolePermissionModel,
+    role_model_1.RoleModel,
+    user_role_model_1.UserRoleModel,
+];
 const modelProviders = models.map((model) => ({
     provide: model.name,
     useValue: model,

@@ -7,10 +7,11 @@ import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './auth/auth.module';
 import { SeedModule } from './seed/seed.module';
 import { UserModule } from './user/user.module';
-import { LocalFileModule } from './local-file/local-file.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
+    CacheModule.register({ isGlobal: true }),
     LoggerModule.forRoot({
       pinoHttp: {
         transport: {
@@ -30,7 +31,6 @@ import { LocalFileModule } from './local-file/local-file.module';
     UserModule,
     ChatModule,
     HealthCheckModule,
-    LocalFileModule,
   ],
 })
 export class AppModule {}

@@ -24,7 +24,7 @@ let AuthService = class AuthService {
     async issueToken(user, response) {
         const payload = {
             sub: user.id,
-            fullName: `${user.last_name} ${user.middle_name} ${user.first_name}`,
+            name: user.name,
         };
         const accessToken = jwt.sign({ ...payload }, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,

@@ -16,12 +16,13 @@ const database_module_1 = require("./database/database.module");
 const auth_module_1 = require("./auth/auth.module");
 const seed_module_1 = require("./seed/seed.module");
 const user_module_1 = require("./user/user.module");
-const local_file_module_1 = require("./local-file/local-file.module");
+const cache_manager_1 = require("@nestjs/cache-manager");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            cache_manager_1.CacheModule.register({ isGlobal: true }),
             nestjs_pino_1.LoggerModule.forRoot({
                 pinoHttp: {
                     transport: {
@@ -41,7 +42,6 @@ AppModule = __decorate([
             user_module_1.UserModule,
             chat_module_1.ChatModule,
             healthCheck_module_1.HealthCheckModule,
-            local_file_module_1.LocalFileModule,
         ],
     })
 ], AppModule);

@@ -3,6 +3,8 @@ import { NotificationType as NotificationTypeEnum } from '../../chat/constants/n
 import { UserType } from '../../user/enum';
 export declare const NotificationType: z.ZodObject<{
     type: z.ZodNativeEnum<typeof NotificationTypeEnum>;
+    description: z.ZodString;
+    icon: z.ZodString;
     user: z.ZodObject<{
         id: z.ZodString;
         type: z.ZodNativeEnum<typeof UserType>;
@@ -13,35 +15,33 @@ export declare const NotificationType: z.ZodObject<{
         id?: string;
         type?: UserType;
     }>;
-    description: z.ZodString;
     title: z.ZodString;
-    icon: z.ZodString;
     read: z.ZodBoolean;
     id: z.ZodString;
     createdAt: z.ZodDate;
     updatedAt: z.ZodDate;
 }, "strip", z.ZodTypeAny, {
     type?: NotificationTypeEnum;
+    description?: string;
+    icon?: string;
     user?: {
         id?: string;
         type?: UserType;
     };
-    description?: string;
     title?: string;
-    icon?: string;
     read?: boolean;
     id?: string;
     createdAt?: Date;
     updatedAt?: Date;
 }, {
     type?: NotificationTypeEnum;
+    description?: string;
+    icon?: string;
     user?: {
         id?: string;
         type?: UserType;
     };
-    description?: string;
     title?: string;
-    icon?: string;
     read?: boolean;
     id?: string;
     createdAt?: Date;

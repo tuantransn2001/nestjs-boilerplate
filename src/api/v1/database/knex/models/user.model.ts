@@ -1,100 +1,74 @@
 import { Model } from 'objection';
 import { ModelName } from '../../../common/enums/common';
 import BaseModel from '../../../common/models/base.model';
-import { Device } from './device.model';
-import { UserVerification } from './userVerification.model';
-import { UserType, UserStatus } from '../../../user/enum';
-import { getCurrentTime } from '../../../common';
-export class User extends BaseModel {
+import { RoleModel } from './role.model';
+import { AccessTokenModel } from './access_token.model';
+export class UserModel extends BaseModel {
   static get tableName() {
     return ModelName.USER;
   }
 
+  name!: string;
   email!: string;
-  phone!: string;
-  password!: string;
-  first_name!: string;
-  last_name!: string;
-  middle_name!: string;
-  avatar!: string | null;
-  status!: UserStatus;
-  type!: UserType;
   is_active!: boolean;
-  is_reported!: boolean;
-  is_blocked!: boolean;
-  last_active_at!: Date;
-
-  $beforeInsert(): void {
-    this.createdAt = getCurrentTime();
-    this.updatedAt = getCurrentTime();
-    this.last_active_at = getCurrentTime();
-  }
-
-  $beforeUpdate(): void {
-    this.updatedAt = getCurrentTime();
-  }
+  email_verified_at!: Date;
+  password!: string;
+  avatar_url!: string;
+  remember_token!: string;
+  phone!: string;
+  password_last_changed!: Date;
 
   static get jsonSchema() {
     return {
       type: 'object',
-
-      required: ['phone', 'first_name', 'password'],
-
+      required: ['name', 'email'],
       properties: {
-        email: { type: 'string' },
-        phone: { type: 'string' },
-        password: { type: 'string' },
-        status: { type: typeof UserStatus },
-        type: { type: typeof UserType },
-        first_name: { type: 'string' },
-        last_name: { type: 'string' },
-        middle_name: { type: 'string' },
-        avatar: { type: ['string', 'null'] },
+        id: { type: 'uuid' },
+        name: { type: 'string', maxLength: 191 },
+        email: { type: 'string', maxLength: 191 },
         is_active: { type: 'boolean' },
-        is_reported: { type: 'boolean' },
-        is_blocked: { type: 'boolean' },
-        last_active_at: { type: 'date' },
+        country_id: { type: 'integer' },
+        email_verified_at: { type: 'timestamp' },
+        password: { type: 'string', maxLength: 255 },
+        profile_image_path: { type: 'string', maxLength: 255 },
+        remember_token: { type: 'string', maxLength: 100 },
+        is_two_factor_enabled: { type: 'boolean' },
+        two_factor_verification_code: { type: 'text' },
+        two_factor_verification_expiry: { type: 'timestamp' },
+        password_last_changed: { type: 'timestamp' },
+        created_at: { type: 'timestamp' },
+        updated_at: { type: 'timestamp' },
+        deleted_at: { type: 'timestamp' },
       },
     };
   }
 
   static get relationMappings() {
     return {
-      devices: {
-        relation: Model.HasManyRelation,
-        modelClass: Device,
+      roles: {
+        relation: Model.ManyToManyRelation,
+        modelClass: RoleModel,
         join: {
           from: `${ModelName.USER}.id`,
-          to: `${ModelName.DEVICE}.user_id`,
+          through: {
+            from: `${ModelName.USER_ROLE}.user_id`,
+            to: `${ModelName.USER_ROLE}.role_code`,
+          },
+          to: `${ModelName.ROLE}.role_code`,
         },
       },
-
-      userVerifications: {
+      accessTokens: {
         relation: Model.HasManyRelation,
-        modelClass: UserVerification,
+        modelClass: AccessTokenModel,
         join: {
           from: `${ModelName.USER}.id`,
-          to: `${ModelName.USER_VERIFICATION}.user_id`,
+          to: `${ModelName.ACCESS_TOKEN}.user_id`,
         },
       },
     };
   }
 
   public toDto() {
-    return {
-      id: this.id,
-      email: this.email,
-      phone: this.phone,
-      status: this.status,
-      first_name: this.first_name,
-      last_name: this.last_name,
-      middle_name: this.middle_name,
-      fullName: `${this.last_name} ${this.middle_name} ${this.first_name}`,
-      type: this.type,
-      is_active: this.is_active,
-      last_active_at: this.last_active_at,
-      createdAt: this.createdAt,
-      avatar: this.avatar,
-    };
+    return {};
   }
 }

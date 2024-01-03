@@ -1,101 +1,98 @@
 import { ModelName } from '../../../common/enums/common';
 import BaseModel from '../../../common/models/base.model';
-import { Device } from './device.model';
-import { UserVerification } from './userVerification.model';
-import { UserType, UserStatus } from '../../../user/enum';
-export declare class User extends BaseModel {
+import { RoleModel } from './role.model';
+import { AccessTokenModel } from './access_token.model';
+export declare class UserModel extends BaseModel {
     static get tableName(): ModelName;
+    name: string;
     email: string;
-    phone: string;
-    password: string;
-    first_name: string;
-    last_name: string;
-    middle_name: string;
-    avatar: string | null;
-    status: UserStatus;
-    type: UserType;
     is_active: boolean;
-    is_reported: boolean;
-    is_blocked: boolean;
-    last_active_at: Date;
-    $beforeInsert(): void;
-    $beforeUpdate(): void;
+    email_verified_at: Date;
+    password: string;
+    avatar_url: string;
+    remember_token: string;
+    phone: string;
+    password_last_changed: Date;
     static get jsonSchema(): {
         type: string;
         required: string[];
         properties: {
+            id: {
+                type: string;
+            };
+            name: {
+                type: string;
+                maxLength: number;
+            };
             email: {
                 type: string;
-            };
-            phone: {
-                type: string;
-            };
-            password: {
-                type: string;
-            };
-            status: {
-                type: "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
-            };
-            type: {
-                type: "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
-            };
-            first_name: {
-                type: string;
-            };
-            last_name: {
-                type: string;
-            };
-            middle_name: {
-                type: string;
-            };
-            avatar: {
-                type: string[];
+                maxLength: number;
             };
             is_active: {
                 type: string;
             };
-            is_reported: {
+            country_id: {
                 type: string;
             };
-            is_blocked: {
+            email_verified_at: {
                 type: string;
             };
-            last_active_at: {
+            password: {
+                type: string;
+                maxLength: number;
+            };
+            profile_image_path: {
+                type: string;
+                maxLength: number;
+            };
+            remember_token: {
+                type: string;
+                maxLength: number;
+            };
+            is_two_factor_enabled: {
+                type: string;
+            };
+            two_factor_verification_code: {
+                type: string;
+            };
+            two_factor_verification_expiry: {
+                type: string;
+            };
+            password_last_changed: {
+                type: string;
+            };
+            created_at: {
+                type: string;
+            };
+            updated_at: {
+                type: string;
+            };
+            deleted_at: {
                 type: string;
             };
         };
     };
     static get relationMappings(): {
-        devices: {
+        roles: {
             relation: import("objection").RelationType;
-            modelClass: typeof Device;
+            modelClass: typeof RoleModel;
             join: {
                 from: string;
+                through: {
+                    from: string;
+                    to: string;
+                };
                 to: string;
             };
         };
-        userVerifications: {
+        accessTokens: {
             relation: import("objection").RelationType;
-            modelClass: typeof UserVerification;
+            modelClass: typeof AccessTokenModel;
             join: {
                 from: string;
                 to: string;
             };
         };
     };
-    toDto(): {
-        id: string;
-        email: string;
-        phone: string;
-        status: UserStatus;
-        first_name: string;
-        last_name: string;
-        middle_name: string;
-        fullName: string;
-        type: UserType;
-        is_active: boolean;
-        last_active_at: Date;
-        createdAt: Date;
-        avatar: string;
-    };
+    toDto(): {};
 }

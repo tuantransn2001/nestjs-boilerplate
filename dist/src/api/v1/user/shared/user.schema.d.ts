@@ -1,12 +1,12 @@
 import { z } from 'zod';
 export declare const UserSchema: z.ZodObject<{
+    is_active: z.ZodDefault<z.ZodBoolean>;
     email: z.ZodOptional<z.ZodString>;
-    phone: z.ZodOptional<z.ZodString>;
     password: z.ZodString;
+    phone: z.ZodOptional<z.ZodString>;
     first_name: z.ZodString;
     last_name: z.ZodString;
     middle_name: z.ZodString;
-    is_active: z.ZodDefault<z.ZodBoolean>;
     is_reported: z.ZodDefault<z.ZodBoolean>;
     is_blocked: z.ZodDefault<z.ZodBoolean>;
     last_active_at: z.ZodOptional<z.ZodDate>;
@@ -14,13 +14,13 @@ export declare const UserSchema: z.ZodObject<{
     createdAt: z.ZodDate;
     updatedAt: z.ZodDate;
 }, "strip", z.ZodTypeAny, {
+    is_active?: boolean;
     email?: string;
-    phone?: string;
     password?: string;
+    phone?: string;
     first_name?: string;
     last_name?: string;
     middle_name?: string;
-    is_active?: boolean;
     is_reported?: boolean;
     is_blocked?: boolean;
     last_active_at?: Date;
@@ -28,13 +28,13 @@ export declare const UserSchema: z.ZodObject<{
     createdAt?: Date;
     updatedAt?: Date;
 }, {
+    is_active?: boolean;
     email?: string;
-    phone?: string;
     password?: string;
+    phone?: string;
     first_name?: string;
     last_name?: string;
     middle_name?: string;
-    is_active?: boolean;
     is_reported?: boolean;
     is_blocked?: boolean;
     last_active_at?: Date;

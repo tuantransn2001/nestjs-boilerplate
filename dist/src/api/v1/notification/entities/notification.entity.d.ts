@@ -11,8 +11,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
     type: string;
     id: string;
     read: boolean;
-    createdAt?: Date;
-    updatedAt?: Date;
+    description?: string;
+    icon?: string;
     user?: {
         type?: string;
         enum?: {
@@ -21,9 +21,9 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
             GUEST?: unknown;
         };
     };
-    description?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
     title?: string;
-    icon?: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -31,8 +31,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
     type: string;
     id: string;
     read: boolean;
-    createdAt?: Date;
-    updatedAt?: Date;
+    description?: string;
+    icon?: string;
     user?: {
         type?: string;
         enum?: {
@@ -41,9 +41,9 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
             GUEST?: unknown;
         };
     };
-    description?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
     title?: string;
-    icon?: string;
 }>> & mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -51,8 +51,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
     type: string;
     id: string;
     read: boolean;
-    createdAt?: Date;
-    updatedAt?: Date;
+    description?: string;
+    icon?: string;
     user?: {
         type?: string;
         enum?: {
@@ -61,9 +61,9 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
             GUEST?: unknown;
         };
     };
-    description?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
     title?: string;
-    icon?: string;
 }> & {
     _id: mongoose.Types.ObjectId;
 }>;

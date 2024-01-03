@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../database/knex/models/user.model';
+import { UserModel } from '../database/knex/models/user.model';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import { HttpException, RestFullAPI, handleErrorNotFound } from '../utils';
@@ -13,10 +13,10 @@ import { isEmpty } from '../common';
 export class AuthService {
   constructor(private userService: UserService) {}
 
-  public async issueToken(user: User, response: Response) {
+  public async issueToken(user: UserModel, response: Response) {
     const payload = {
       sub: user.id,
-      fullName: `${user.last_name} ${user.middle_name} ${user.first_name}`,
+      name: user.name,
     };
 
     const accessToken = jwt.sign(
@@ -49,7 +49,9 @@ export class AuthService {
     if (isEmpty(foundUsers))
       return handleErrorNotFound('Phone number do not exist!');
 
-    const foundUser = foundUsers.find((u: User) => u.phone === loginDto.phone);
+    const foundUser = foundUsers.find(
+      (u: UserModel) => u.phone === loginDto.phone,
+    );
 
     const isMatchPassword = await bcrypt.compare(
       loginDto.password,

@@ -27,7 +27,7 @@ let UserService = class UserService {
         this.knex = knex;
     }
     async findUniq(id) {
-        const foundUser = await user_model_1.User.query()
+        const foundUser = await user_model_1.UserModel.query()
             .findOne({ id, is_deleted: false })
             .first()
             .returning('*');
@@ -39,7 +39,7 @@ let UserService = class UserService {
             ...(email ? { email } : {}),
         };
         const foundUsers = await (0, awaity_1.reduce)(Object.entries(condition), async (r, [k, v]) => {
-            const foundUser = await user_model_1.User.query()
+            const foundUser = await user_model_1.UserModel.query()
                 .findOne({ is_deleted: false, ...{ [k]: v } })
                 .first();
             const isUserExist = () => foundUser !== undefined;
@@ -51,7 +51,7 @@ let UserService = class UserService {
         return foundUsers;
     }
     async getCurrentLogin(loginDto) {
-        const foundUser = await user_model_1.User.query()
+        const foundUser = await user_model_1.UserModel.query()
             .findOne({ is_deleted: false, ...loginDto })
             .first();
         return foundUser;
@@ -105,7 +105,7 @@ let UserService = class UserService {
                 count: 0,
                 items: [],
             };
-        const foundUsers = await user_model_1.User.query()
+        const foundUsers = await user_model_1.UserModel.query()
             .where('first_name', 'like', `%${payload.name}%`)
             .andWhere('is_deleted', false)
             .offset(payload.offset)

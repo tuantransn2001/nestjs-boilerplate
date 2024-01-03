@@ -1,4 +1,4 @@
-import { User } from '../database/knex/models/user.model';
+import { UserModel } from '../database/knex/models/user.model';
 import { HttpException } from '../utils';
 import { Request, Response } from 'express';
 import { UserService } from '../user/user.service';
@@ -7,25 +7,25 @@ import { LoginDto } from './dto/input/loginDto';
 export declare class AuthService {
     private userService;
     constructor(userService: UserService);
-    issueToken(user: User, response: Response): Promise<{
+    issueToken(user: UserModel, response: Response): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;
     login(loginDto: LoginDto, response: Response): Promise<{
         statusCode: number;
-        error: HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: HttpException;
     }>;
     register(registerDTO: RegisterDto, response: Response): Promise<{
         statusCode: number;
-        error: HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: HttpException;
     }>;
     logout(response: Response): Promise<{
         statusCode: number;

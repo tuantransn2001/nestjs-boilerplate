@@ -4,19 +4,19 @@ export declare class HealthCheckController {
     constructor(healthCheckService: HealthCheckService);
     checkScreen(): Promise<{
         statusCode: number;
-        error: import("../utils").HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: import("../utils").HttpException;
     }>;
     checkMongooseConnection(): Promise<{
         statusCode: number;
-        error: import("../utils").HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: import("../utils").HttpException;
     }>;
     checkKenxConnection(): Promise<{
         statusCode: number;

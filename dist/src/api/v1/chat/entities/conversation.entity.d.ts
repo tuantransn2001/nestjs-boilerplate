@@ -24,9 +24,9 @@ export declare const Conversation: mongoose.Schema<any, mongoose.Model<any, any,
         };
         content?: string;
     }[];
+    name?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    name?: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -47,9 +47,9 @@ export declare const Conversation: mongoose.Schema<any, mongoose.Model<any, any,
         };
         content?: string;
     }[];
+    name?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    name?: string;
 }>> & mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -70,9 +70,9 @@ export declare const Conversation: mongoose.Schema<any, mongoose.Model<any, any,
         };
         content?: string;
     }[];
+    name?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    name?: string;
 }> & {
     _id: mongoose.Types.ObjectId;
 }>;

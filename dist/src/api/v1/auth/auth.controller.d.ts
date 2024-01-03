@@ -7,19 +7,19 @@ export declare class AuthController {
     constructor(authService: AuthService);
     login(loginDto: LoginDtoInput, response: Response): Promise<{
         statusCode: number;
-        error: import("../utils").HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: import("../utils").HttpException;
     }>;
     register(registerDto: RegisterDto, response: Response): Promise<{
         statusCode: number;
-        error: import("../utils").HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: import("../utils").HttpException;
     }>;
     refresh(request: Request, response: Response): Promise<string | {
         statusCode: number;

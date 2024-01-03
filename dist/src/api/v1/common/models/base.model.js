@@ -7,11 +7,11 @@ class BaseModel extends objection_1.Model {
     $beforeInsert() {
         if (!this.id)
             this.id = (0, uuid_1.v4)();
-        this.createdAt = (0, __1.getCurrentTime)();
-        this.updatedAt = (0, __1.getCurrentTime)();
+        this.created_at = (0, __1.getCurrentTime)();
+        this.updated_at = (0, __1.getCurrentTime)();
     }
     $beforeUpdate() {
-        this.updatedAt = (0, __1.getCurrentTime)();
+        this.updated_at = (0, __1.getCurrentTime)();
     }
 }
 exports.default = BaseModel;

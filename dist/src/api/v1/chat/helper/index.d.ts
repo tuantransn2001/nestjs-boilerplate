@@ -3,13 +3,13 @@ import { IUser } from '../../user/shared/user.interface';
 import { IPagination } from '../../common/shared/common.interface';
 export declare const handleConvertUserIDToString: (users: IUser[]) => {
     id: string;
+    is_active?: boolean;
     email?: string;
-    phone?: string;
     password?: string;
+    phone?: string;
     first_name?: string;
     last_name?: string;
     middle_name?: string;
-    is_active?: boolean;
     is_reported?: boolean;
     is_blocked?: boolean;
     last_active_at?: Date;

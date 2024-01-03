@@ -29,26 +29,26 @@ export declare class NotificationService {
     constructor(notificationModel: Model<INotification>);
     getAll(payload: GetAllUserNotificationDto): Promise<(import("mongoose").Document<unknown, {}, {
         type?: import("../chat/constants/notification_constants").NotificationType;
+        description?: string;
+        icon?: string;
         user?: {
             id?: string;
             type?: import("../user/enum").UserType;
         };
-        description?: string;
         title?: string;
-        icon?: string;
         read?: boolean;
         id?: string;
         createdAt?: Date;
         updatedAt?: Date;
     }> & {
         type?: import("../chat/constants/notification_constants").NotificationType;
+        description?: string;
+        icon?: string;
         user?: {
             id?: string;
             type?: import("../user/enum").UserType;
         };
-        description?: string;
         title?: string;
-        icon?: string;
         read?: boolean;
         id?: string;
         createdAt?: Date;

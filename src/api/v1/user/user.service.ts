@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../database/knex/models/user.model';
+import { UserModel } from '../database/knex/models/user.model';
 import { LoginDto } from '../auth/dto/input/loginDto';
 import { RegisterDto } from '../auth/dto/input/registerDto';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,8 +14,8 @@ import { UserStatus, UserType } from './enum';
 export class UserService {
   constructor(@InjectKnex() private readonly knex: Knex) {}
 
-  public async findUniq(id: string): Promise<User | undefined> {
-    const foundUser = await User.query()
+  public async findUniq(id: string): Promise<UserModel | undefined> {
+    const foundUser = await UserModel.query()
       .findOne({ id, is_deleted: false })
       .first()
       .returning('*');
@@ -24,22 +24,22 @@ export class UserService {
   public async getByPhoneOrEmail(
     phone?: string,
     email?: string,
-  ): Promise<User[] | undefined[]> {
+  ): Promise<UserModel[] | undefined[]> {
     const condition = {
       ...(phone ? { phone } : {}),
       ...(email ? { email } : {}),
     };
 
-    const foundUsers: User[] = await asyncReduce(
+    const foundUsers: UserModel[] = await asyncReduce(
       Object.entries(condition),
-      async (r: User[], [k, v]) => {
-        const foundUser = await User.query()
+      async (r: UserModel[], [k, v]) => {
+        const foundUser = await UserModel.query()
           .findOne({ is_deleted: false, ...{ [k]: v } })
           .first();
 
         const isUserExist = (): boolean => foundUser !== undefined;
         const isSameUser = (): boolean =>
-          r.findIndex((u: User) => u.id === foundUser.id) !== -1;
+          r.findIndex((u: UserModel) => u.id === foundUser.id) !== -1;
 
         if (isUserExist() && !isSameUser()) r.push(foundUser);
 
@@ -49,8 +49,10 @@ export class UserService {
     );
     return foundUsers;
   }
-  public async getCurrentLogin(loginDto: LoginDto): Promise<User | undefined> {
-    const foundUser = await User.query()
+  public async getCurrentLogin(
+    loginDto: LoginDto,
+  ): Promise<UserModel | undefined> {
+    const foundUser = await UserModel.query()
       .findOne({ is_deleted: false, ...loginDto })
       .first();
     return foundUser;
@@ -123,7 +125,7 @@ export class UserService {
         items: [],
       };
 
-    const foundUsers = await User.query()
+    const foundUsers = await UserModel.query()
       .where('first_name', 'like', `%${payload.name}%`)
       .andWhere('is_deleted', false)
       .offset(payload.offset)

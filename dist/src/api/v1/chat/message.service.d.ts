@@ -10,19 +10,19 @@ export declare class MessageService {
         type?: string;
     }[]) => Promise<{
         statusCode: number;
-        error: import("../utils").HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: import("../utils").HttpException;
     }>;
     handleGetAllMessageByConversationID: (ConversationModel: Model<IConversation>, id: string) => Promise<{
         statusCode: number;
-        error: import("../utils").HttpException;
-    } | {
-        statusCode: number;
         message: string;
         data: any;
+    } | {
+        statusCode: number;
+        error: import("../utils").HttpException;
     }>;
     handleGetFullUserDetailByIDList: (members: {
         id?: string;

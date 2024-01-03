@@ -1,19 +1,20 @@
 import { Model } from 'objection';
 import { v4 as uuidv4 } from 'uuid';
 import { getCurrentTime } from '..';
-export default class BaseModel extends Model {
+export default abstract class BaseModel extends Model {
   id!: string;
   is_deleted!: boolean;
-  createdAt!: Date;
-  updatedAt!: Date;
+  created_at!: Date;
+  updated_at!: Date;
+  deleted_at!: Date;
 
   $beforeInsert() {
     if (!this.id) this.id = uuidv4();
-    this.createdAt = getCurrentTime();
-    this.updatedAt = getCurrentTime();
+    this.created_at = getCurrentTime();
+    this.updated_at = getCurrentTime();
   }
 
   $beforeUpdate() {
-    this.updatedAt = getCurrentTime();
+    this.updated_at = getCurrentTime();
   }
 }
