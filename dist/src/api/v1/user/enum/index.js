@@ -1,11 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserStatus = exports.UserType = exports.DeviceType = void 0;
-var DeviceType;
-(function (DeviceType) {
-    DeviceType["APPLE"] = "1";
-    DeviceType["SAMSUNG"] = "2";
-})(DeviceType = exports.DeviceType || (exports.DeviceType = {}));
+exports.UserStatus = exports.UserType = void 0;
 var UserType;
 (function (UserType) {
     UserType["ADMIN"] = "admin";

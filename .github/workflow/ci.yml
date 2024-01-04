@@ -1,26 +1,23 @@
-# name: Test api
+name: Test api
  
-# on: 
-#  push:
-#     branches: ["develop"]
-#  pull_request:
-#     branches: ["master"]
+on: 
+ push:
+    branches: ["develop"]
+ pull_request:
+    branches: ["master"]
 
  
-# env:
-#   IMAGE_TAG: nestjs-api
+env:
+  IMAGE_TAG: nestjs-api
  
-# jobs:
-#   test:
-#     name: Run tests
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out the repository
-#         uses: actions/checkout@v3
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
  
-#       - name: Build the Docker image
-#         run: docker build -t $IMAGE_TAG --target=create-build .
+      - name: Build the Docker image
+        run: docker build -t $IMAGE_TAG .
   
-#       - name: Run tests
-#         run: docker run $IMAGE_TAG sh -c 'npm run test'
-test

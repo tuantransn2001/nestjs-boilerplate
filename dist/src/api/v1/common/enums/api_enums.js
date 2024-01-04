@@ -3,11 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.STATUS_CODE = exports.STATUS_MESSAGE = exports.API_PATH = void 0;
 var API_PATH;
 (function (API_PATH) {
-    API_PATH["get_chat_token"] = "create-token-api";
-    API_PATH["admin_login"] = "login";
-    API_PATH["student_login"] = "student";
-    API_PATH["search_list_user"] = "search-list-user";
-    API_PATH["search_user_by_name"] = "search-user-by-name";
 })(API_PATH = exports.API_PATH || (exports.API_PATH = {}));
 var STATUS_MESSAGE;
 (function (STATUS_MESSAGE) {
