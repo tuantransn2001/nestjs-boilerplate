@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-const enum_1 = require("../../../user/enum");
 class RegisterDto {
 }
 __decorate([
@@ -34,34 +33,6 @@ __decorate([
     (0, swagger_1.ApiProperty)({ required: true }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], RegisterDto.prototype, "first_name", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({
-        enum: enum_1.UserType,
-        isArray: true,
-        example: Object.values(enum_1.UserType),
-    }),
-    (0, class_validator_1.IsEnum)(enum_1.UserType, { each: true }),
-    __metadata("design:type", String)
-], RegisterDto.prototype, "type", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({
-        enum: enum_1.UserStatus,
-        isArray: true,
-        example: Object.values(enum_1.UserStatus),
-    }),
-    (0, class_validator_1.IsEnum)(enum_1.UserStatus, { each: true }),
-    __metadata("design:type", String)
-], RegisterDto.prototype, "status", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], RegisterDto.prototype, "last_name", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], RegisterDto.prototype, "middle_name", void 0);
+], RegisterDto.prototype, "name", void 0);
 exports.RegisterDto = RegisterDto;
 //# sourceMappingURL=registerDto.js.map

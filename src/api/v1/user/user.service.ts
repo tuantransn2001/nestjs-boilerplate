@@ -8,7 +8,7 @@ import { getCurrentTime, isEmpty } from '../common';
 import { InjectKnex, Knex } from 'nestjs-knex';
 import { ModelName } from '../common/enums/common';
 import * as bcrypt from 'bcrypt';
-import { UserStatus, UserType } from './enum';
+import { UserType } from './enum';
 
 @Injectable()
 export class UserService {
@@ -68,13 +68,7 @@ export class UserService {
         email: user.email,
         phone: user.phone,
         password: hash,
-        first_name: user.first_name ? user.first_name : '',
-        last_name: user.last_name ? user.last_name : '',
-        middle_name: user.middle_name ? user.middle_name : '',
-        type: user.type ? user.type : UserType.USER,
-        status: user.status ? user.status : UserStatus.OFFLINE,
-        search_name:
-          user.last_name + ' ' + user.middle_name + ' ' + user.first_name,
+        name: user.name ? user.name : '',
         is_active: true,
         is_reported: false,
         is_blocked: false,
@@ -126,7 +120,7 @@ export class UserService {
       };
 
     const foundUsers = await UserModel.query()
-      .where('first_name', 'like', `%${payload.name}%`)
+      .where('name', 'like', `%${payload.name}%`)
       .andWhere('is_deleted', false)
       .offset(payload.offset)
       .limit(payload.limit);

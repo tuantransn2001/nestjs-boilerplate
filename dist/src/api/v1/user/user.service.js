@@ -66,12 +66,7 @@ let UserService = class UserService {
             email: user.email,
             phone: user.phone,
             password: hash,
-            first_name: user.first_name ? user.first_name : '',
-            last_name: user.last_name ? user.last_name : '',
-            middle_name: user.middle_name ? user.middle_name : '',
-            type: user.type ? user.type : enum_1.UserType.USER,
-            status: user.status ? user.status : enum_1.UserStatus.OFFLINE,
-            search_name: user.last_name + ' ' + user.middle_name + ' ' + user.first_name,
+            name: user.name ? user.name : '',
             is_active: true,
             is_reported: false,
             is_blocked: false,
@@ -106,7 +101,7 @@ let UserService = class UserService {
                 items: [],
             };
         const foundUsers = await user_model_1.UserModel.query()
-            .where('first_name', 'like', `%${payload.name}%`)
+            .where('name', 'like', `%${payload.name}%`)
             .andWhere('is_deleted', false)
             .offset(payload.offset)
             .limit(payload.limit);

@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsString } from 'class-validator';
-import { UserStatus, UserType } from '../../../user/enum';
+import { IsString } from 'class-validator';
 
 export class RegisterDto {
   @ApiProperty({ required: true, default: 'user@gmail.com' })
@@ -14,28 +13,5 @@ export class RegisterDto {
   password: string;
   @ApiProperty({ required: true })
   @IsString()
-  first_name: string;
-
-  @ApiProperty({
-    enum: UserType,
-    isArray: true,
-    example: Object.values(UserType),
-  })
-  @IsEnum(UserType, { each: true })
-  type: UserType;
-
-  @ApiProperty({
-    enum: UserStatus,
-    isArray: true,
-    example: Object.values(UserStatus),
-  })
-  @IsEnum(UserStatus, { each: true })
-  status: UserStatus;
-
-  @ApiProperty()
-  @IsString()
-  last_name: string;
-  @ApiProperty()
-  @IsString()
-  middle_name: string;
+  name: string;
 }
