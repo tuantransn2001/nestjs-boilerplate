@@ -1,23 +1,19 @@
-name: Test api
- 
-on: 
- push:
-    branches: ["develop"]
- pull_request:
-    branches: ["master"]
+# Sample github action configuration for building and pushing docker images to docker hub
+name: Build and Deploy
 
- 
-env:
-  IMAGE_TAG: nestjs-api
- 
-jobs:
-  test:
-    name: Run tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@v3
- 
-      - name: Build the Docker image
-        run: docker build -t $IMAGE_TAG .
-  
+on: 
+    push: 
+        branches: 
+            - develop
+    pull_request: 
+        branches: 
+            - master
+
+jobs: 
+    build-and-deploy: 
+        runs-on: ubuntu-latest
+        steps: 
+            - uses: actions/checkout@v3
+            - name: Build the Docker image
+              run: docker build . --file Dockerfile --tag nestjs-boilerplate-api
+           
