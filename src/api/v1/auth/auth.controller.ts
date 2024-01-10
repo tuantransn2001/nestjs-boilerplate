@@ -6,7 +6,6 @@ import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoginDto as LoginDtoInput } from './dto/input/loginDto';
 
 import { RegisterDto } from './dto/input/registerDto';
-import { UserStatus, UserType } from '../user/enum';
 
 @ApiTags('Authenticate')
 @Controller('auth')
@@ -43,11 +42,7 @@ export class AuthController {
           email: 'admin@gmail.com',
           phone: '0984250491',
           password: 'password',
-          first_name: 'admin',
-          middle_name: 'admin',
-          last_name: 'admin',
-          type: UserType.ADMIN,
-          status: UserStatus.ONLINE,
+          name: 'admin',
         },
       },
     },

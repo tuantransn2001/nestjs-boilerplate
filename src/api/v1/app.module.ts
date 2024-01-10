@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ChatModule } from './chat/chat.module';
 import { HealthCheckModule } from './health-check/healthCheck.module';
 import { LoggerModule } from 'nestjs-pino';
 import { ConfigModule } from '@nestjs/config';
@@ -8,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { SeedModule } from './seed/seed.module';
 import { UserModule } from './user/user.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [

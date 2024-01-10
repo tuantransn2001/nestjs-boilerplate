@@ -33,20 +33,32 @@ let UserService = class UserService {
             .returning('*');
         return foundUser ? foundUser : undefined;
     }
+    async findByPhone(phone) {
+        const foundUser = await this.knex
+            .select('*')
+            .from(common_3.ModelName.USER)
+            .where({ phone, is_deleted: false })
+            .returning('*')
+            .first();
+        return foundUser ? foundUser : undefined;
+    }
     async getByPhoneOrEmail(phone, email) {
         const condition = {
             ...(phone ? { phone } : {}),
             ...(email ? { email } : {}),
         };
         const foundUsers = await (0, awaity_1.reduce)(Object.entries(condition), async (r, [k, v]) => {
-            const foundUser = await user_model_1.UserModel.query()
-                .findOne({ is_deleted: false, ...{ [k]: v } })
+            const foundUser = await this.knex
+                .select('*')
+                .from(common_3.ModelName.USER)
+                .where({ [k]: v, is_deleted: false })
+                .returning('*')
                 .first();
             const isUserExist = () => foundUser !== undefined;
             const isSameUser = () => r.findIndex((u) => u.id === foundUser.id) !== -1;
             if (isUserExist() && !isSameUser())
                 r.push(foundUser);
-            return r;
+            return r.push(foundUser);
         }, []);
         return foundUsers;
     }
@@ -61,17 +73,7 @@ let UserService = class UserService {
         const hash = bcrypt.hashSync(user.password, SALT);
         const createdUser = await this.knex
             .table(common_3.ModelName.USER)
-            .insert({
-            id: (0, uuid_1.v4)(),
-            email: user.email,
-            phone: user.phone,
-            password: hash,
-            name: user.name ? user.name : '',
-            is_active: true,
-            is_reported: false,
-            is_blocked: false,
-            createdAt: (0, common_2.getCurrentTime)(),
-        })
+            .insert(new user_model_1.UserModel({ ...user, password: hash, id: (0, uuid_1.v4)() }))
             .returning('*');
         return createdUser[0];
     }

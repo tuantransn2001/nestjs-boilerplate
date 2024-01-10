@@ -30,7 +30,7 @@ let AuthService = class AuthService {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
         });
         const refreshToken = jwt.sign({ ...payload }, process.env.REFRESH_TOKEN_SECRET, {
-            expiresIn: '7d',
+            expiresIn: '15d',
         });
         response.cookie('access_token', accessToken, { httpOnly: true });
         response.cookie('refresh_token', refreshToken, {
@@ -39,10 +39,9 @@ let AuthService = class AuthService {
         return { accessToken, refreshToken };
     }
     async login(loginDto, response) {
-        const foundUsers = await this.userService.getByPhoneOrEmail(loginDto.phone, undefined);
-        if ((0, common_2.isEmpty)(foundUsers))
+        const foundUser = await this.userService.findByPhone(loginDto.phone);
+        if (!foundUser)
             return (0, utils_1.handleErrorNotFound)('Phone number do not exist!');
-        const foundUser = foundUsers.find((u) => u.phone === loginDto.phone);
         const isMatchPassword = await bcrypt.compare(loginDto.password, foundUser.password);
         if (!isMatchPassword)
             return utils_1.RestFullAPI.onFail(api_enums_1.STATUS_CODE.UNAUTHORIZED, {

@@ -22,10 +22,9 @@ import {
   RequestContactListDTO,
   EditMessageDTO,
 } from './dto/input';
-import { WsGuard } from '../common/guard/wsGuard';
 import { WsAuthMiddleware } from '../common/middleware/wsAuthMiddleware';
+import { WsGuard } from '../common/guard/wsGuard';
 
-// @UseGuards(WsGuard)
 @UseGuards(WsGuard)
 @WebSocketGateway({ cors: true })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {

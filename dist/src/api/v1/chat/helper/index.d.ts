@@ -5,8 +5,8 @@ export declare const handleConvertUserIDToString: (users: IUser[]) => {
     id: string;
     is_active?: boolean;
     email?: string;
-    password?: string;
     phone?: string;
+    password?: string;
     first_name?: string;
     last_name?: string;
     middle_name?: string;

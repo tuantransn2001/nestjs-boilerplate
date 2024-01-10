@@ -5,19 +5,19 @@ export declare const HealthCheck: mongoose.Schema<any, mongoose.Model<any, any, 
     minimize: false;
 }, {
     id: string;
+    event?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    event?: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     id: string;
+    event?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    event?: string;
 }>> & mongoose.FlatRecord<{
     id: string;
+    event?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    event?: string;
 }> & {
     _id: mongoose.Types.ObjectId;
 }>;

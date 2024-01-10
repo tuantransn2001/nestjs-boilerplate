@@ -18,8 +18,8 @@ const common_1 = require("@nestjs/common");
 const socket_io_1 = require("socket.io");
 const event_constants_1 = require("./constants/event_constants");
 const chat_service_1 = require("./chat.service");
-const wsGuard_1 = require("../common/guard/wsGuard");
 const wsAuthMiddleware_1 = require("../common/middleware/wsAuthMiddleware");
+const wsGuard_1 = require("../common/guard/wsGuard");
 let ChatGateway = class ChatGateway {
     constructor(chatService) {
         this.chatService = chatService;
