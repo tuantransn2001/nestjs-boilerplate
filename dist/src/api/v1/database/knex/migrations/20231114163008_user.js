@@ -6,9 +6,10 @@ const common_1 = require("../../../common/enums/common");
 async function up(knex) {
     await knex.schema.createTable(common_1.ModelName.USER, (table) => {
         table.uuid('id').primary().defaultTo((0, uuid_1.v4)());
+        table.string('phone', 191).notNullable();
         table.string('name', 191).notNullable();
         table.string('email', 191).notNullable();
-        table.boolean('is_active').defaultTo(true);
+        table.boolean('is_deleted').defaultTo(true);
         table.timestamp('email_verified_at');
         table.string('password', 255);
         table.string('avatar_url', 255);

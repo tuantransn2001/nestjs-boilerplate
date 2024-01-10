@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const chat_module_1 = require("./chat/chat.module");
 const healthCheck_module_1 = require("./health-check/healthCheck.module");
 const nestjs_pino_1 = require("nestjs-pino");
 const config_1 = require("@nestjs/config");
@@ -17,6 +16,7 @@ const auth_module_1 = require("./auth/auth.module");
 const seed_module_1 = require("./seed/seed.module");
 const user_module_1 = require("./user/user.module");
 const cache_manager_1 = require("@nestjs/cache-manager");
+const chat_module_1 = require("./chat/chat.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([

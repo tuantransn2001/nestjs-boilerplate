@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserModel } from '../database/knex/models/user.model';
+import { IUser, UserModel } from '../database/knex/models/user.model';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import { HttpException, RestFullAPI, handleErrorNotFound } from '../utils';
@@ -31,7 +31,7 @@ export class AuthService {
       { ...payload },
       process.env.REFRESH_TOKEN_SECRET,
       {
-        expiresIn: '7d',
+        expiresIn: '15d',
       },
     );
     response.cookie('access_token', accessToken, { httpOnly: true });
@@ -41,17 +41,9 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
   public async login(loginDto: LoginDto, response: Response) {
-    const foundUsers = await this.userService.getByPhoneOrEmail(
-      loginDto.phone,
-      undefined,
-    );
+    const foundUser = await this.userService.findByPhone(loginDto.phone);
 
-    if (isEmpty(foundUsers))
-      return handleErrorNotFound('Phone number do not exist!');
-
-    const foundUser = foundUsers.find(
-      (u: UserModel) => u.phone === loginDto.phone,
-    );
+    if (!foundUser) return handleErrorNotFound('Phone number do not exist!');
 
     const isMatchPassword = await bcrypt.compare(
       loginDto.password,
@@ -92,6 +84,7 @@ export class AuthService {
 
     return registerResponse;
   }
+
   public async logout(response: Response) {
     response.clearCookie('access_token');
     response.clearCookie('refresh_token');

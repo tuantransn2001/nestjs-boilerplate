@@ -1,14 +1,48 @@
 version: '3.8'
 
 services:
-  app:
-    build: 
+  api:
+    container_name: nestj-api
+    build:
+      dockerfile: ./Dockerfile
       context: .
-      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
     env_file:
       - .env
     command: npm run start:prod
     ports:
       - 4000:4000
 
- 
+  # postgres:
+  #   container_name: postgres
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_PASSWORD= tuantransn2001
+  #   volumes:
+  #     - ./pgdata:/var/lib/postgresql/data
+  #   ports:
+  #     - '5432:5432'
+
+  # pgadmin:
+  #   container_name: nest-pgadmin4
+  #   image: pgadmin4
+  #   restart: always
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL= tuantransn2001@gmail.com
+  #     - PGADMIN_DEFAULT_PASSWORD= tuantransn2001
+  #   ports:
+  #     - '5050:80'
+  #   depends_on:
+  #     - postgres
+
+  # mongo:
+  #   container_name: mongodb
+  #   image: mongo:6.0
+  #   restart: always
+  #   ports:
+  #     - '27017:27017'
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME= tuantransn2001
+  #     - MONGO_INITDB_ROOT_PASSWORD= tbpeaHPc18NYWKOt

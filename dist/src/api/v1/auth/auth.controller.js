@@ -18,7 +18,6 @@ const auth_service_1 = require("./auth.service");
 const swagger_1 = require("@nestjs/swagger");
 const loginDto_1 = require("./dto/input/loginDto");
 const registerDto_1 = require("./dto/input/registerDto");
-const enum_1 = require("../user/enum");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -67,11 +66,7 @@ __decorate([
                     email: 'admin@gmail.com',
                     phone: '0984250491',
                     password: 'password',
-                    first_name: 'admin',
-                    middle_name: 'admin',
-                    last_name: 'admin',
-                    type: enum_1.UserType.ADMIN,
-                    status: enum_1.UserStatus.ONLINE,
+                    name: 'admin',
                 },
             },
         },

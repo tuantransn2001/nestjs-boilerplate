@@ -1,18 +1,26 @@
-# Stage 1: Build the application
+##############################
+# BUILD
+##############################
+# prepare image for build
 FROM node:18 as builder
-RUN npm install -g npm@10.2.5
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY package*.json ./
-COPY tsconfig.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve the application from a lean production image
-FROM node:18-alpine
-WORKDIR /usr/src/app
-COPY --from=builder /usr/src/app/package.json ./
-COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY .env /usr/src/app/.env
-CMD [ "npm" ,"run" , "start:prod" ]
+
+##############################
+# PRODUCTION
+##############################
+# minimize production image
+FROM node:18 as production
+WORKDIR /app
+COPY package*.json ./
+ENV PORT=4000
+ENV NODE_ENV=Production
+RUN npm install
+COPY --from=builder /app/dist ./dist
+EXPOSE ${PORT}
+
+CMD [ "npm", "run", "start:prod" ]

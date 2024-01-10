@@ -1,5 +1,5 @@
 import { Model } from 'objection';
-export default abstract class BaseModel extends Model {
+export default class BaseModel extends Model {
     id: string;
     is_deleted: boolean;
     created_at: Date;

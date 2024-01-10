@@ -2,8 +2,8 @@ import { z } from 'zod';
 export declare const UserSchema: z.ZodObject<{
     is_active: z.ZodDefault<z.ZodBoolean>;
     email: z.ZodOptional<z.ZodString>;
-    password: z.ZodString;
     phone: z.ZodOptional<z.ZodString>;
+    password: z.ZodString;
     first_name: z.ZodString;
     last_name: z.ZodString;
     middle_name: z.ZodString;
@@ -16,8 +16,8 @@ export declare const UserSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     is_active?: boolean;
     email?: string;
-    password?: string;
     phone?: string;
+    password?: string;
     first_name?: string;
     last_name?: string;
     middle_name?: string;
@@ -30,8 +30,8 @@ export declare const UserSchema: z.ZodObject<{
 }, {
     is_active?: boolean;
     email?: string;
-    password?: string;
     phone?: string;
+    password?: string;
     first_name?: string;
     last_name?: string;
     middle_name?: string;

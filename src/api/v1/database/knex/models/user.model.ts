@@ -1,8 +1,26 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Model } from 'objection';
 import { ModelName } from '../../../common/enums/common';
 import BaseModel from '../../../common/models/base.model';
 import { RoleModel } from './role.model';
 import { AccessTokenModel } from './access_token.model';
+
+export type IUser = {
+  id?: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  is_deleted?: boolean;
+  email_verified_at?: Date;
+  password?: string;
+  avatar_url?: string;
+  remember_token?: string;
+  password_last_changed?: Date;
+  created_at?: Date;
+  updated_at?: Date;
+  deleted_at?: Date;
+};
+
 export class UserModel extends BaseModel {
   static get tableName() {
     return ModelName.USER;
@@ -10,13 +28,26 @@ export class UserModel extends BaseModel {
 
   name!: string;
   email!: string;
-  is_active!: boolean;
+  phone!: string;
+  is_deleted!: boolean;
   email_verified_at!: Date;
   password!: string;
   avatar_url!: string;
   remember_token!: string;
-  phone!: string;
   password_last_changed!: Date;
+
+  constructor(user?: IUser) {
+    super();
+    this.id = user.id || uuidv4();
+    this.name = user.name || '';
+    this.email = user.email || '';
+    this.phone = user.phone || '';
+    this.is_deleted = user.is_deleted || false;
+    this.email_verified_at = user.email_verified_at || null;
+    this.password = user.password || '';
+    this.avatar_url = user.avatar_url || '';
+    this.remember_token = user.remember_token || null;
+  }
 
   static get jsonSchema() {
     return {
@@ -26,16 +57,12 @@ export class UserModel extends BaseModel {
         id: { type: 'uuid' },
         name: { type: 'string', maxLength: 191 },
         email: { type: 'string', maxLength: 191 },
-        is_active: { type: 'boolean' },
-        country_id: { type: 'integer' },
+        phone: { type: 'string', maxLength: 191 },
+        is_deleted: { type: 'boolean' },
         email_verified_at: { type: 'timestamp' },
         password: { type: 'string', maxLength: 255 },
-        profile_image_path: { type: 'string', maxLength: 255 },
+        avatar_url: { type: 'string', maxLength: 255 },
         remember_token: { type: 'string', maxLength: 100 },
-        is_two_factor_enabled: { type: 'boolean' },
-        two_factor_verification_code: { type: 'text' },
-        two_factor_verification_expiry: { type: 'timestamp' },
-        password_last_changed: { type: 'timestamp' },
         created_at: { type: 'timestamp' },
         updated_at: { type: 'timestamp' },
         deleted_at: { type: 'timestamp' },

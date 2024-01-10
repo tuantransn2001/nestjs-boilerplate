@@ -2,17 +2,33 @@ import { ModelName } from '../../../common/enums/common';
 import BaseModel from '../../../common/models/base.model';
 import { RoleModel } from './role.model';
 import { AccessTokenModel } from './access_token.model';
+export type IUser = {
+    id?: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+    is_deleted?: boolean;
+    email_verified_at?: Date;
+    password?: string;
+    avatar_url?: string;
+    remember_token?: string;
+    password_last_changed?: Date;
+    created_at?: Date;
+    updated_at?: Date;
+    deleted_at?: Date;
+};
 export declare class UserModel extends BaseModel {
     static get tableName(): ModelName;
     name: string;
     email: string;
-    is_active: boolean;
+    phone: string;
+    is_deleted: boolean;
     email_verified_at: Date;
     password: string;
     avatar_url: string;
     remember_token: string;
-    phone: string;
     password_last_changed: Date;
+    constructor(user?: IUser);
     static get jsonSchema(): {
         type: string;
         required: string[];
@@ -28,10 +44,11 @@ export declare class UserModel extends BaseModel {
                 type: string;
                 maxLength: number;
             };
-            is_active: {
+            phone: {
                 type: string;
+                maxLength: number;
             };
-            country_id: {
+            is_deleted: {
                 type: string;
             };
             email_verified_at: {
@@ -41,25 +58,13 @@ export declare class UserModel extends BaseModel {
                 type: string;
                 maxLength: number;
             };
-            profile_image_path: {
+            avatar_url: {
                 type: string;
                 maxLength: number;
             };
             remember_token: {
                 type: string;
                 maxLength: number;
-            };
-            is_two_factor_enabled: {
-                type: string;
-            };
-            two_factor_verification_code: {
-                type: string;
-            };
-            two_factor_verification_expiry: {
-                type: string;
-            };
-            password_last_changed: {
-                type: string;
             };
             created_at: {
                 type: string;

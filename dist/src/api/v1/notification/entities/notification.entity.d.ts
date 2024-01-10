@@ -8,8 +8,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    type: string;
     id: string;
+    type: string;
     read: boolean;
     description?: string;
     icon?: string;
@@ -28,8 +28,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    type: string;
     id: string;
+    type: string;
     read: boolean;
     description?: string;
     icon?: string;
@@ -48,8 +48,8 @@ export declare const Notification: mongoose.Schema<any, mongoose.Model<any, any,
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    type: string;
     id: string;
+    type: string;
     read: boolean;
     description?: string;
     icon?: string;

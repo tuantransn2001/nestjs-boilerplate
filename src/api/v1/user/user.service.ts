@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { UserModel } from '../database/knex/models/user.model';
+import { IUser, UserModel } from '../database/knex/models/user.model';
 import { LoginDto } from '../auth/dto/input/loginDto';
 import { RegisterDto } from '../auth/dto/input/registerDto';
 import { v4 as uuidv4 } from 'uuid';
 import { reduce as asyncReduce, each as asyncForEach } from 'awaity';
-import { getCurrentTime, isEmpty } from '../common';
+import { isEmpty } from '../common';
 import { InjectKnex, Knex } from 'nestjs-knex';
 import { ModelName } from '../common/enums/common';
 import * as bcrypt from 'bcrypt';
@@ -21,6 +21,16 @@ export class UserService {
       .returning('*');
     return foundUser ? foundUser : undefined;
   }
+  public async findByPhone(phone: string): Promise<UserModel | undefined> {
+    const foundUser = await this.knex
+      .select('*')
+      .from(ModelName.USER)
+      .where({ phone, is_deleted: false })
+      .returning('*')
+      .first();
+    return foundUser ? foundUser : undefined;
+  }
+  // todo: fix
   public async getByPhoneOrEmail(
     phone?: string,
     email?: string,
@@ -29,51 +39,43 @@ export class UserService {
       ...(phone ? { phone } : {}),
       ...(email ? { email } : {}),
     };
-
     const foundUsers: UserModel[] = await asyncReduce(
       Object.entries(condition),
       async (r: UserModel[], [k, v]) => {
-        const foundUser = await UserModel.query()
-          .findOne({ is_deleted: false, ...{ [k]: v } })
+        const foundUser = await this.knex
+          .select('*')
+          .from(ModelName.USER)
+          .where({ [k]: v, is_deleted: false })
+          .returning('*')
           .first();
 
         const isUserExist = (): boolean => foundUser !== undefined;
         const isSameUser = (): boolean =>
-          r.findIndex((u: UserModel) => u.id === foundUser.id) !== -1;
+          r.findIndex((u: IUser) => u.id === foundUser.id) !== -1;
 
         if (isUserExist() && !isSameUser()) r.push(foundUser);
 
-        return r;
+        return r.push(foundUser);
       },
       [],
     );
+
     return foundUsers;
   }
-  public async getCurrentLogin(
-    loginDto: LoginDto,
-  ): Promise<UserModel | undefined> {
+  public async getCurrentLogin(loginDto: LoginDto): Promise<IUser | undefined> {
     const foundUser = await UserModel.query()
       .findOne({ is_deleted: false, ...loginDto })
       .first();
     return foundUser;
   }
+
   public async insertOne(user: RegisterDto) {
     const SALT = 10;
     const hash = bcrypt.hashSync(user.password, SALT);
 
     const createdUser = await this.knex
       .table(ModelName.USER)
-      .insert({
-        id: uuidv4(),
-        email: user.email,
-        phone: user.phone,
-        password: hash,
-        name: user.name ? user.name : '',
-        is_active: true,
-        is_reported: false,
-        is_blocked: false,
-        createdAt: getCurrentTime(),
-      })
+      .insert(new UserModel({ ...user, password: hash, id: uuidv4() }))
       .returning('*');
 
     return createdUser[0];
